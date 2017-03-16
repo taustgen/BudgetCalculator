@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Budget Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body ng-app="app">
+    <div ng-controller="BudgetController as homeCtrl">
+        <div class="jumbotron vertical-center" style="text-align: center">
+            <h1>Budget Calculator</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="panel panel-success col-sm-5" style="padding:0">
+                    <div class="panel-heading"><strong>Income Entries</strong></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <la for="credit">Income Source</la>
+                            <input type="text" id="credit" class="form-control" placeholder="Enter Source:" ng-model="homeCtrl.inSource">
+                        </div>
+                        <div class="form-group">
+                            <la for="incAmount">Amount</la>
+                            <input type="number" id="incAmount" class="form-control" placeholder="Enter Amount:" ng-model="homeCtrl.inAmount"></input>
+                        </div>
+                        <button type="button" name="button" class="btn btn-success btn-block" ng-click="homeCtrl.addIncome()">+Add Income</button>
+                        <hr>
+                        <table class="table table-striped" style="margin-bottom:0;">
+                            <thead>
+                                <tr>
+                                    <th>Source:</th>
+                                    <th>Amount:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in homeCtrl.income">
+                                    <td>{{item.source}}</td>
+                                    <td>${{item.amount}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-2"></div>
+                <div class="panel panel-danger col-sm-5" style="padding:0">
+                    <div class="panel-heading"><strong>Expense Entries</strong></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <la for="debit">Expense Source</la>
+                            <input type="text" id="debit" class="form-control" placeholder="Enter Source:" ng-model="homeCtrl.expSource">
+                        </div>
+                        <div class="form-group">
+                            <la for="expAmount">Amount</la>
+                            <input type="number" id="expAmount" class="form-control" placeholder="Enter Amount:" ng-model="homeCtrl.expAmount"></input>
+                        </div>
+                        <button type="button" name="button" class="btn btn-danger btn-block" ng-click="homeCtrl.addExpense()">-Add Expense</button>
+                        <hr>
+                        <table class="table table-striped" style="margin-bottom:0;">
+                            <thead>
+                                <tr>
+                                    <th>Source:</th>
+                                    <th>Amount:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in homeCtrl.expenses">
+                                    <td>{{item.source}}</td>
+                                    <td>${{item.amount}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="panel panel-info col-sm-6" style="padding:0">
+                    <div class="panel-heading"><strong>Summary</strong></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <strong>Total Income:</strong>
+                                <br>
+                                <p>${{homeCtrl.inTotal}}</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <strong>Total Expenses:</strong>
+                                <br>
+                                <p>${{homeCtrl.expTotal}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <strong>Left after spending:</strong>
+                                <p>${{homeCtrl.balance}}</p>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="app/app.module.js"></script>
+    <script type="text/javascript" src="app/budget.controller.js"></script>
+</body>
+</html>
